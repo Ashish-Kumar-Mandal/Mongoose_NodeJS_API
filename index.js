@@ -1,9 +1,21 @@
 const express = require('express');
+const multer = require('multer');
 require('./config');
 const Product = require('./products');
 
 const app = express();
 app.use(express.json());
+
+const upload = multer({
+    storage:multer.diskStorage({
+        destination: function(req, file, cb) {
+            cb(null, "uploads")
+        },
+        filename: function(req, file, cb) {
+            cb(null, file.filename + "-" + Date.now() + ".jpeg")
+        }
+    })
+}).single("user_file");
 
 app.get('/select', async (req,res)=>{
     let data = await Product.find();
@@ -30,6 +42,20 @@ app.delete('/delete/:_id', async (req,res)=>{
     let msg = ""
     result.deletedCount>0 ? msg = result.deletedCount+" Records Deleted Successfully" : msg = "Records Not Found" 
     res.send(msg)
+});
+
+app.get('/search/:key', async (req,res)=>{
+    let data = await Product.find({
+        $or:[
+            {"name":{$regex:req.params.key}},
+            {"model":{$regex:req.params.key}}
+        ]
+    });
+    res.send(data);
+});
+
+app.post('/upload', upload, (req, res)=>{
+    res.send("file uploaded");
 });
 
 app.listen(4545);
