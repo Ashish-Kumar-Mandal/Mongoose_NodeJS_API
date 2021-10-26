@@ -6,9 +6,9 @@ const os = require('os');
 
 // console.log(os.endianness());
 
-// console.log(os.freemem()/(1024*1024*1024)+" GB RAM Free");
+console.log(os.freemem()/(1024*1024*1024)+" GB RAM Free");
 
-// console.log(os.totalmem()/(1024*1024*1024)+" GB RAM");
+console.log(os.totalmem()/(1024*1024*1024)+" GB RAM");
 
 // console.log(os.getPriority());
 
@@ -32,4 +32,4 @@ const os = require('os');
 
 // console.log(os.uptime());
 
-console.log(os.version());
+// console.log(os.version());
