@@ -1,14 +1,14 @@
 const os = require('os');
 
+console.log("Free RAM: "+(os.freemem()/(1024*1024*1024)).toFixed(2)+" GB");
+
+console.log("Total RAM: "+(os.totalmem()/(1024*1024*1024)).toFixed(2)+" GB");
+
 // console.log(os.arch());
 
 // console.log(os.cpus());
 
 // console.log(os.endianness());
-
-console.log(os.freemem()/(1024*1024*1024)+" GB RAM Free");
-
-console.log(os.totalmem()/(1024*1024*1024)+" GB RAM");
 
 // console.log(os.getPriority());
 
