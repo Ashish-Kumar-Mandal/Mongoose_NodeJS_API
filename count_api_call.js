@@ -8,7 +8,7 @@ let api_Count = 0;
 
 event.on('apiCount', ()=>{
     api_Count++
-    console.log(api_Count + " times API called")
+    console.log(api_Count + " times API called.")
 })
 
 app.get('/', (req, res)=>{
